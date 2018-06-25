@@ -25,23 +25,33 @@ Superpower.prototype.use = function(){
 
     } 
     if(this.name=="Shadow"){
+        console.log("shadow")
         this.cooldown = 5
         this.game.ball2 = new Ball(this.game)
-        this.game.ball2.vx = -this.game.ball.vx
-        this.game.ball2.vy = -this.game.ball.vy
         this.game.ball2.x =this.game.ball.x
         this.game.ball2.y =this.game.ball.y
+        this.game.ball2.vx = -this.game.ball.vx
+        this.game.ball2.vy = -this.game.ball.vy
+        
         var that = this
         var interval=setInterval(function(){
-            if(that.game.ball2.x == that.game.canvas.width/2){
-                that.game.ball2=""
-                clearInterval(interval)
+            if(that.game.player==that.player){
+                if(that.game.ball2.x >= that.game.canvas.width/2){
+                    that.game.ball2=""
+                    clearInterval(interval)
+                }
+    
+            }else{
+                if(that.game.ball2.x <= that.game.canvas.width/2){
+                    that.game.ball2=""
+                    clearInterval(interval)
+                }
             }
-
+            
         })
         this.wait()
     }
-    if(this.name=="Ultimate"){
+    if(this.name=="SuperBoost"){
         this.cooldown = 15
         if(Math.abs(this.game.ball.vy)<2){
             this.game.ball.vy = this.game.ball.vy*8
@@ -76,7 +86,10 @@ Superpower.prototype.isUsed = function(){
 }
 
 Superpower.prototype.draw = function (){
+    setInterval(function(){
+        console.log(this.cooldown)
 
+    },500)
 }
 
 Superpower.prototype.finish = function(){

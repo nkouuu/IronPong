@@ -1,7 +1,7 @@
 function Ball(game) {
   this.game = game;
-  this.x = 450;
-  this.y = 300;
+  this.x = this.game.canvas.width/2;
+  this.y = this.game.canvas.height/2;
   this.vx = -2;
   this.vy = -1;
   this.color = "#010d01";
@@ -9,14 +9,14 @@ function Ball(game) {
 }
 
 Ball.prototype.reset = function(p) {
-  this.x = 450;
-  this.y = 300;
+  this.x = this.game.canvas.width/2;
+  this.y = this.game.canvas.height/2;
   if (p == 2) {
     this.vx = 2;
     this.vy = 1;
   } else if (p == 1) {
     this.vx = -2;
-    this.vy = 1;
+    this.vy = -1;
   }
 };
 
@@ -54,16 +54,18 @@ Ball.prototype.checkColisionPlayer = function(player) {
     ) {
       //si choca en la x
       if(this.vx<0) this.vx=2 ;else this.vx =-2; //resetear la vx 
-      if(this.vy<0) this.vy=1 ;else this.vy =-1;
+      if(this.vy<0) this.vy=2 ;else this.vy =-2;
       //var otherPlayer;
       
       if(this.checkPowers(player)) return;
       if (player.counterUp > 0) {
         //si el player va hacia arriba
         this.vy = -2;
+        this.vx = this.vx*2
       } else if (player.counterDown > 0) {
         //si el player va hacia abajo
         this.vy = 2;
+        this.vx = this.vx*2
       } else {
         //si el player esta parado
         if (
@@ -72,11 +74,12 @@ Ball.prototype.checkColisionPlayer = function(player) {
         ) {
           this.vy = 0;
         } else if (this.vy < 0) {
-          this.vy = -1;
-        } else {
           this.vy = 1;
+        } else {
+          this.vy = -1;
         }
       }
+      
     }
   }
 };
@@ -90,8 +93,8 @@ Ball.prototype.checkPowers = function(player) {
     player.powers.shadow.use();
     return true;
   }
-  if (player.powers.ultimate.isActivated()) {
-    player.powers.ultimate.use();
+  if (player.powers.superboost.isActivated()) {
+    player.powers.superboost.use();
     return true;
   }
   return false;

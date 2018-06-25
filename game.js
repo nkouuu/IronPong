@@ -24,10 +24,10 @@ Game.prototype.asignPowers = function(){
     this.player.powers.shadow=p
     this.player2.powers.shadow=p2
 
-    p = new Superpower("Ultimate",this,this.player)
-    p2 = new Superpower("Ultimate",this,this.player2)
-    this.player.powers.ultimate=p
-    this.player2.powers.ultimate=p2
+    p = new Superpower("SuperBoost",this,this.player)
+    p2 = new Superpower("SuperBoost",this,this.player2)
+    this.player.powers.superboost=p
+    this.player2.powers.superboost=p2
 }
 
 Game.prototype.start = function(){
