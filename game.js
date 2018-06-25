@@ -6,11 +6,29 @@ function Game (){
     this.player2 = new Player(this)
     this.player2.x = this.canvas.width - this.player2.w - 2
     this.ball = new Ball(this)
+    this.ball2=""
     this.backgroundColor = "#F5F5F5"
+    this.asignPowers()
     
 }
 
+Game.prototype.asignPowers = function(){
+    var p,p2
+    p = new Superpower("Boost",this,this.player)
+    p2 = new Superpower("Boost",this,this.player2)
+    this.player.powers.boost=p
+    this.player2.powers.boost=p2
 
+    p = new Superpower("Shadow",this,this.player)
+    p2 = new Superpower("Shadow",this,this.player2)
+    this.player.powers.shadow=p
+    this.player2.powers.shadow=p2
+
+    p = new Superpower("Ultimate",this,this.player)
+    p2 = new Superpower("Ultimate",this,this.player2)
+    this.player.powers.ultimate=p
+    this.player2.powers.ultimate=p2
+}
 
 Game.prototype.start = function(){
     var that = this
@@ -25,6 +43,7 @@ Game.prototype.start = function(){
 
 Game.prototype.checkColisions = function(){
     this.ball.checkColision()
+    if(this.ball2!="") this.ball2.checkColision()
     this.player.checkColisionUp()
     this.player.checkColisionDown()
     this.player2.checkColisionUp()
@@ -57,6 +76,7 @@ Game.prototype.drawAll = function(){
     this.player.draw()
     this.player2.draw()
     this.ball.draw()
+    if(this.ball2!="") this.ball2.draw()
     this.drawPoints()
 }
 
@@ -69,6 +89,7 @@ Game.prototype.drawPoints = function(){
 
 Game.prototype.moveAll = function (){
     this.ball.move()
+    if(this.ball2!="") this.ball2.move()
     this.player.move()
     this.player2.move()
 }

@@ -1,5 +1,6 @@
 body{
-    padding-top: 50px
+    padding: 50px;
+    background:grey
 }
 
 #main{
@@ -17,8 +18,28 @@ body{
 }
  #board{
      text-align: center;
-     display:none
+     display:none;
+     align-items: center;
+     max-height: 400px;
+ }
+ #board > div{
+     display:inline-block;
+     
+ }
+ #board  img{
+     width: 30px;
+     height: 30px;
+ }
+ h4{
+     margin:0
  }
  #canvas{
      border:2px solid black
  }
+
+ /*.powers {
+     display:flex;
+     height: 400px;
+     align-content: space-between
+     
+ }*/

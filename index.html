@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -9,25 +10,74 @@
     <script type="text/javascript" src="game.js"></script>
     <script type="text/javascript" src="ball.js"></script>
     <script type="text/javascript" src="player.js"></script>
+    <script type="text/javascript" src="superpower.js"></script>
     <link rel="stylesheet" href="./style.css">
     <title>IronPong</title>
 
 </head>
+
 <body>
 
     <div id="main">
         <div id="img">
-             <img src="images/pong.jpg" alt="">
+            <img src="images/pong.jpg" alt="">
 
         </div>
         <button id="btn-start">Start!</button>
     </div>
 
     <div id="board">
+            <div class="powers">
+                    <div id="powerQ">
+                        <div class="info">
+                            <img src="./images/q.jpeg" alt="">
+        
+                            <h4>Boost</h4>
+                        </div>
+                        <div class="crono">
+        
+                        </div>
+                    </div>
+        
+        
+        
+                    <div id="powerE">
+                        <div class="info">
+                            <img src="./images/e.jpeg" alt="">
+        
+                            <h4>Shadow</h4>
+                        </div>
+                        <div class="crono">
+        
+                        </div>
+                    </div>
+        
+                    <div id="powerR">
+                        <div class="info">
+                            <img src="./images/r.jpeg" alt="">
+        
+                            <h4>Ultimate</h4>
+                        </div>
+                        <div class="crono">
+        
+                        </div>
+        
+                    </div>
+        
+        
+                </div>
+        <!--<div class="powers">
+            <div>
+                <img src="./images/q.jpeg" alt="">
+            </div>
+            <h4>Ultimate</h4>
+        </div>-->
         <canvas id="canvas" width="900px" height="400px">
 
         </canvas>
+        
     </div>
-    
+
 </body>
+
 </html>

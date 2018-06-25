@@ -10,6 +10,7 @@ function Player(game){
     this.counterUp = 0
     this.counterDown = 0
     this.points = 0
+    this.powers = {}
    
 
 }
