@@ -8,7 +8,8 @@ window.onload = function() {
     document.getElementById("main").style.display = "none";
     game = new Game();
     document.getElementById("board").style.display = "block";
-    asignKeys();
+    asignKeys1vs1();
+    game.player2.ia=true
     game.start();
   }
 
@@ -25,32 +26,18 @@ window.onload = function() {
     i: 73
   };
 
-  function asignKeys() {
+  function asignKeys1vs1() {
     window.onkeydown = function(event) {
       switch (event.keyCode) {
-        case mapaTeclado.up:
-          if (!game.player2.checkColisionUp()) {
-            game.player2.vy = -3;
-            game.player2.counterUp++;
-          }
-
-          break;
-        case mapaTeclado.down:
-          if (!game.player2.checkColisionDown()) {
-            game.player2.vy = 3;
-            game.player2.counterDown++;
-          }
-
-          break;
         case mapaTeclado.w:
           if (!game.player.checkColisionUp()) {
-            game.player.vy = -3;
+            game.player.vy = -game.player.vy0;
             game.player.counterUp++;
           }
           break;
         case mapaTeclado.s:
           if (!game.player.checkColisionDown()) {
-            game.player.vy = 3;
+            game.player.vy = game.player.vy0;
             game.player.counterDown++;
           }
           break;
@@ -59,14 +46,6 @@ window.onload = function() {
 
     window.onkeyup = function(event) {
       switch (event.keyCode) {
-        case mapaTeclado.up:
-          game.player2.vy = 0;
-          game.player2.counterUp = 0;
-          break;
-        case mapaTeclado.down:
-          game.player2.vy = 0;
-          game.player2.counterDown = 0;
-          break;
         case mapaTeclado.w:
           game.player.vy = 0;
           game.player.counterUp = 0;
@@ -84,6 +63,40 @@ window.onload = function() {
         case mapaTeclado.r:
           game.player.powers.superboost.activate();
           break;
+      }
+    };
+  }
+  function asignKeys1vsIA() {
+    window.onkeydown = function(event) {
+      switch (event.keyCode) {
+        case mapaTeclado.up:
+          if (!game.player2.checkColisionUp()) {
+            game.player2.vy = -game.player2.vy0;
+            game.player2.counterUp++;
+          }
+
+          break;
+        case mapaTeclado.down:
+          if (!game.player2.checkColisionDown()) {
+            game.player2.vy = game.player2.vy0;
+            game.player2.counterDown++;
+          }
+
+          break;
+      }
+    };
+
+    window.onkeyup = function(event) {
+      switch (event.keyCode) {
+        case mapaTeclado.up:
+          game.player2.vy = 0;
+          game.player2.counterUp = 0;
+          break;
+        case mapaTeclado.down:
+          game.player2.vy = 0;
+          game.player2.counterDown = 0;
+          break;
+
         case mapaTeclado.p:
           game.player2.powers.boost.activate();
           break;

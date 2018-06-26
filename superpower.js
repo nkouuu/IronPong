@@ -21,6 +21,7 @@ Superpower.prototype.use = function(){
     if(this.name=="Boost"){
         this.cooldown = 5
         this.game.ball.vx = this.game.ball.vx*2
+        this.game.ball.vy = this.game.ball.vy*2
         this.wait()
 
     } 

@@ -1,22 +1,43 @@
 function Player(game){
     this.game = game
-    this.w = 30
+    this.w = 20
     this.h = 80
     this.x = 0
     this.x0 = this.x
     this.y = this.game.canvas.height/2 - this.h/2 + this.w/2
+    this.vy0 = (this.game.canvas.height) / (this.game.fps)
     this.vy = 0
     this.color = "black"
     this.counterUp = 0
     this.counterDown = 0
     this.points = 0
     this.powers = {}
-   
+    this.ia=false
 
 }
-
+var frameCounter = 1
 Player.prototype.move = function(){
+    frameCounter ++
+    if(this.ia){
+        
+        if(this.game.ball.y < this.y){
+            this.vy=-this.vy0
+            this.checkColisionUp()
+
+        }else if(this.game.ball.y > this.y-this.h-this.w/2){
+            this.vy=this.vy0
+            this.checkColisionDown()
+
+        }else{
+            if(this.y-this.h/2-this.w/2 == this.game.ball.y)
+                this.vy=0
+        }
+            
+        
+    }
     this.y+=this.vy
+    this.checkColisionDown()
+    this.checkColisionUp()
 }
 
 Player.prototype.draw = function(){
@@ -36,7 +57,7 @@ Player.prototype.draw = function(){
 }
 
 Player.prototype.checkColisionUp = function(){
-    if(this.y - this.w/2 <= 0){
+    if(this.y - this.w/2 <= 1){
         this.vy=0
         return true
     }

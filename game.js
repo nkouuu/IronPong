@@ -1,6 +1,9 @@
+var game
+
 function Game (){
     this.canvas = document.getElementById("canvas")
     this.ctx = this.canvas.getContext("2d")
+    this.fps= 60
     this.player = new Player(this)
     this.player.x = 2
     this.player2 = new Player(this)
@@ -9,6 +12,8 @@ function Game (){
     this.ball2=""
     this.backgroundColor = "#F5F5F5"
     this.asignPowers()
+    
+    
     
 }
 
@@ -31,23 +36,32 @@ Game.prototype.asignPowers = function(){
 }
 
 Game.prototype.start = function(){
-    var that = this
-    this.interval = setInterval ( function(){
+    game = this
+     var that =this
+    window.requestAnimationFrame(update)
+    
+   /*this.interval = setInterval ( function(){
+        
         that.clear()
         that.drawAll()
         that.moveAll()
+        console.log(that.ball.vy0)
         that.checkColisions()
+        
         //this.moveAll()
-    })
+   })*/
 }
 
+
+
 Game.prototype.checkColisions = function(){
-    this.ball.checkColision()
+    
     if(this.ball2!="") this.ball2.checkColision()
     this.player.checkColisionUp()
     this.player.checkColisionDown()
     this.player2.checkColisionUp()
     this.player2.checkColisionDown()
+    this.ball.checkColision()
     
 
 }
@@ -88,14 +102,30 @@ Game.prototype.drawPoints = function(){
 }
 
 Game.prototype.moveAll = function (){
-    this.ball.move()
-    if(this.ball2!="") this.ball2.move()
     this.player.move()
     this.player2.move()
+    this.ball.move()
+    if(this.ball2!="") this.ball2.move()
+   
 }
 
 Game.prototype.newPoint =  function(){
     this.player.reset(1)
     this.player2.reset(2)
    
+}
+
+var lastTime = 0
+var delta = 0
+function update (time){
+    delta = time - lastTime
+    lastTime = time
+    //console.log(delta)
+    game.fps = 1000/delta
+    //game.checkColisions()
+    game.clear()
+    game.drawAll()
+    game.moveAll()
+    game.checkColisions()
+    requestAnimationFrame(update)
 }
