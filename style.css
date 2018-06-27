@@ -1,5 +1,5 @@
 body{
-    padding: 50px;
+    padding: 50px 0;
     background:grey
 }
 
@@ -7,20 +7,38 @@ body{
     width: 100%;
     text-align: center
 }
-#btn-start {
+ #modes button {
     display: inline-block;
     background: black;
     color:white;
-    width: 10%;
+    width: 30%;
     height: 40px;
     font-size: 20px;
     border-radius: 50px
+}
+#levels button {
+    display: inline-block;
+    background: black;
+    color:white;
+    width: 20%;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 50px
+}
+#main img{
+    border:1px  solid red;
+    border-radius: 40px;
+}
+
+#levels{
+    display: none;
 }
  #board{
      text-align: center;
      display:none;
      align-items: center;
      max-height: 400px;
+     width: 100%;
  }
  #board > div{
      display:inline-block;
@@ -37,9 +55,12 @@ body{
      border:2px solid black
  }
 
- /*.powers {
-     display:flex;
-     height: 400px;
-     align-content: space-between
+ .powers,.powers2{
+     height: 300px;
      
- }*/
+ }
+
+ .powers,.powers2 > *{
+     margin-bottom: 5px;
+     
+ }

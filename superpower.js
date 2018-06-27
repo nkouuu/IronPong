@@ -16,6 +16,8 @@ Superpower.prototype.activate = function (){
 }
 
 Superpower.prototype.use = function(){
+    var that = this
+
     this.activated = false
     this.used = true
     if(this.name=="Boost"){
@@ -26,7 +28,6 @@ Superpower.prototype.use = function(){
 
     } 
     if(this.name=="Shadow"){
-        console.log("shadow")
         this.cooldown = 5
         this.game.ball2 = new Ball(this.game)
         this.game.ball2.x =this.game.ball.x
@@ -34,16 +35,15 @@ Superpower.prototype.use = function(){
         this.game.ball2.vx = -this.game.ball.vx
         this.game.ball2.vy = -this.game.ball.vy
         
-        var that = this
         var interval=setInterval(function(){
             if(that.game.player==that.player){
-                if(that.game.ball2.x >= that.game.canvas.width/2){
+                if(that.game.ball2.x >= that.game.canvas.width*0.6){
                     that.game.ball2=""
                     clearInterval(interval)
                 }
     
             }else{
-                if(that.game.ball2.x <= that.game.canvas.width/2){
+                if(that.game.ball2.x <= that.game.canvas.width*0.4){
                     that.game.ball2=""
                     clearInterval(interval)
                 }
@@ -54,7 +54,7 @@ Superpower.prototype.use = function(){
     }
     if(this.name=="SuperBoost"){
         this.cooldown = 15
-        if(Math.abs(this.game.ball.vy)<2){
+        if(Math.abs(this.game.ball.vy)< this.game.ball.vy0*2){
             this.game.ball.vy = this.game.ball.vy*8
             this.game.ball.vx = this.game.ball.vx*2
         }  else{
@@ -62,6 +62,7 @@ Superpower.prototype.use = function(){
             this.game.ball.vx = this.game.ball.vx*2
 
         }
+        this.game.ball.color ="rgb(161, 3, 3)"
         this.wait()
     }
 
@@ -86,11 +87,14 @@ Superpower.prototype.isUsed = function(){
     return this.used
 }
 
-Superpower.prototype.draw = function (){
+Superpower.prototype.drawCooldown = function (){
+    var that=this
     setInterval(function(){
-        console.log(this.cooldown)
+       if(that.cooldown>0){
+           
+       }
 
-    },500)
+    })
 }
 
 Superpower.prototype.finish = function(){
