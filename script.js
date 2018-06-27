@@ -5,22 +5,42 @@ window.onload = function() {
     document.getElementById("levels").style.display="block";
   };
   document.getElementById("btn-1vsIAEasy").onclick = function() {
+    startGame()
     startGame1vsIA(1);
   };
   document.getElementById("btn-1vsIANormal").onclick = function() {
-    startGame1vsIA(1,5);
-  };
-  document.getElementById("btn-1vsIAHard").onclick = function() {
+    startGame()
     startGame1vsIA(2);
   };
+  document.getElementById("btn-1vsIAHard").onclick = function() {
+    startGame()
+    startGame1vsIA(4);
+  };
   document.getElementById("btn-1vs1").onclick = function() {
+    startGame()
     startGame1vs1();
   };
 
-  function startGame1vsIA(level) {
+
+  function startGame(){
     document.getElementById("main").style.display = "none";
     game = new Game();
-    document.getElementById("board").style.display = "block";
+    document.getElementById("board").style.display = "flex";
+    document.getElementById("board").style.justifyContent = "space-around";
+    document.getElementById("powers").style.display="flex"
+    document.getElementById("powers").style.flexDirection="column"
+    document.getElementById("powers").style.justifyContent="space-around"
+    document.getElementById("powers2").style.display="flex"
+    document.getElementById("powers2").style.flexDirection="column"
+    document.getElementById("powers2").style.justifyContent="space-around"
+  }
+
+  function startGame1vsIA(level) {
+    var powers2=document.getElementById("powers2")
+    var divs=powers2.getElementsByTagName("div")
+    for(var i=0;i<divs.length;i++){
+        divs[i].style.display="none"
+    }
     asignKeys(false);
     game.player2.ia = true
     game.player2.vy0=game.player2.vy0*level
@@ -30,9 +50,6 @@ window.onload = function() {
    
   }
   function startGame1vs1() {
-    document.getElementById("main").style.display = "none";
-    game = new Game();
-    document.getElementById("board").style.display = "block";
     asignKeys(true);
     game.start();
    

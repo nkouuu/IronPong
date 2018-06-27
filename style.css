@@ -1,6 +1,6 @@
 body{
     padding: 50px 0;
-    background:grey
+    background:grey;
 }
 
 #main{
@@ -25,8 +25,11 @@ body{
     font-size: 20px;
     border-radius: 50px
 }
+
 #main img{
     border:1px  solid red;
+    max-height:  200px;
+    min-width: 800px;
     border-radius: 40px;
 }
 
@@ -52,15 +55,22 @@ body{
      margin:0
  }
  #canvas{
-     border:2px solid black
+     border:2px solid rgb(240, 60, 60)
  }
 
- .powers,.powers2{
-     height: 300px;
+ #powers h4,#powers2 h4{
+    border-bottom:1px solid rgb(240, 60, 60)
      
  }
+ .counter{
+     min-height: 30px;
+ }
 
- .powers,.powers2 > *{
-     margin-bottom: 5px;
+ #powers,#powers2 {
+     display:flex;
+     flex-direction: column;
+     align-content: space-between;
+     height: 300px;
+     min-width: 80px;
      
  }

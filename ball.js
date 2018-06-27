@@ -38,23 +38,27 @@ Ball.prototype.checkColision = function() {
   if (this.x  -this.radius*2  > this.game.canvas.width) {
     this.game.player.points++;
     this.reset(2);
+    this.game.point.play()
     return true
   }
   if (this.x + this.radius*2 < 0) {
     this.game.player2.points++;
     this.reset(1);
+    this.game.point.play()
     return true
   }
   //si choca en techo o suelo
   if (this.y - this.radius < 0) {
     this.y = 1 + this.radius; // lo adelanto un poco para que no se solapen varias condiciones
     this.vy = -this.vy;
+    this.game.basic.play()
     return true
   }
 
   if (this.y + this.radius > this.game.canvas.height) {
     this.y = this.game.canvas.height - this.radius - 1;
     this.vy = -this.vy;
+    this.game.basic.play()
     return true
   }
 
@@ -88,6 +92,7 @@ Ball.prototype.checkColisionPlayer = function(player) {
     else this.vy = -this.vy0;
 
     if (this.checkPowers(player)) return;
+    this.game.basic.play()
     if (player.counterUp > 0) {      //si el player va hacia arriba
       this.vy = -this.vy0 * player.counterUp;
       this.vx = this.vx * 2;

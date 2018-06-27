@@ -6,28 +6,41 @@ function Game() {
   this.fps = 60;
   this.player = new Player(this);
   this.player.x = 2;
+  this.player.name="player"
   this.player2 = new Player(this);
   this.player2.x = this.canvas.width - this.player2.w - 2;
+  this.player2.name="player2"
   this.ball = new Ball(this);
   this.ball2 = "";
-  this.backgroundColor = "#F5F5F5";
+  this.backgroundColor = "white";
   this.asignPowers();
+  this.basic = new Audio("./sounds/basic.wav")
+  this.point = new Audio("./sounds/point.wav")
+  this.superboost = new Audio("./sounds/superboost.wav")
+  this.shadow = new Audio("./sounds/shadow.wav")
+  this.boost = new Audio("./sounds/boost.wav")
 }
 
 Game.prototype.asignPowers = function() {
   var p, p2;
   p = new Superpower("Boost", this, this.player);
+  p.counter = document.getElementById("powerQ").getElementsByClassName("counter")[0]
   p2 = new Superpower("Boost", this, this.player2);
+  p2.counter = document.getElementById("powerP").getElementsByClassName("counter")[0]
   this.player.powers.boost = p;
   this.player2.powers.boost = p2;
 
   p = new Superpower("Shadow", this, this.player);
+  p.counter = document.getElementById("powerE").getElementsByClassName("counter")[0]
   p2 = new Superpower("Shadow", this, this.player2);
+  p2.counter = document.getElementById("powerO").getElementsByClassName("counter")[0]
   this.player.powers.shadow = p;
   this.player2.powers.shadow = p2;
 
   p = new Superpower("SuperBoost", this, this.player);
+  p.counter = document.getElementById("powerR").getElementsByClassName("counter")[0]
   p2 = new Superpower("SuperBoost", this, this.player2);
+  p2.counter = document.getElementById("powerI").getElementsByClassName("counter")[0]
   this.player.powers.superboost = p;
   this.player2.powers.superboost = p2;
 };
@@ -96,10 +109,10 @@ Game.prototype.newPoint = function() {
     game.ctx.fillStyle = "black";
     game.ctx.font = "35px Arial";
     game.ctx.fillText("Go!!", game.ball.x - 30, game.ball.y - 100);
-  }, 500);
+  }, 750);
   setTimeout(function() {
     game.id = window.requestAnimationFrame(update);
-  }, 1000);
+  }, 1500);
 
   
 };

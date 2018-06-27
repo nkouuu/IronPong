@@ -22,13 +22,15 @@ Superpower.prototype.use = function(){
     this.used = true
     if(this.name=="Boost"){
         this.cooldown = 5
-        this.game.ball.vx = this.game.ball.vx*2
+        this.game.boost.play()
+        this.game.ball.vx = this.game.ball.vx*2.5
         this.game.ball.vy = this.game.ball.vy*2
-        this.wait()
 
     } 
     if(this.name=="Shadow"){
         this.cooldown = 5
+        this.game.shadow.play()
+        this.game.ball.color = "black"
         this.game.ball2 = new Ball(this.game)
         this.game.ball2.x =this.game.ball.x
         this.game.ball2.y =this.game.ball.y
@@ -50,9 +52,9 @@ Superpower.prototype.use = function(){
             }
             
         })
-        this.wait()
     }
     if(this.name=="SuperBoost"){
+        this.game.superboost.play()
         this.cooldown = 15
         if(Math.abs(this.game.ball.vy)< this.game.ball.vy0*2){
             this.game.ball.vy = this.game.ball.vy*8
@@ -63,8 +65,9 @@ Superpower.prototype.use = function(){
 
         }
         this.game.ball.color ="rgb(161, 3, 3)"
-        this.wait()
     }
+    this.wait()
+    this.drawCooldown()
 
 }
 
@@ -89,9 +92,16 @@ Superpower.prototype.isUsed = function(){
 
 Superpower.prototype.drawCooldown = function (){
     var that=this
-    setInterval(function(){
-       if(that.cooldown>0){
-           
+    var i=setInterval(function(){
+       if(that.cooldown>9){
+        that.counter.style.display="block"
+           that.counter.innerText="00:"+that.cooldown
+       }else if(that.cooldown>0){
+        that.counter.style.display="block"
+        that.counter.innerText="00:0"+that.cooldown
+       }else{
+           that.counter.style.display="none"
+           clearInterval(i)
        }
 
     })
