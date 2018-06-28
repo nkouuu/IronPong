@@ -25,12 +25,13 @@ Superpower.prototype.use = function(){
         this.game.boost.play()
         this.game.ball.vx = this.game.ball.vx*2.5
         this.game.ball.vy = this.game.ball.vy*2
+        this.game.ball.color ="rgb(247, 233, 45)"
 
     } 
     if(this.name=="Shadow"){
         this.cooldown = 5
         this.game.shadow.play()
-        this.game.ball.color = "black"
+        this.game.ball.color = "white"
         this.game.ball2 = new Ball(this.game)
         this.game.ball2.x =this.game.ball.x
         this.game.ball2.y =this.game.ball.y
@@ -64,7 +65,8 @@ Superpower.prototype.use = function(){
             this.game.ball.vx = this.game.ball.vx*2
 
         }
-        this.game.ball.color ="rgb(161, 3, 3)"
+        this.game.ball.color ="rgb(248, 21, 21)"
+        
     }
     this.wait()
     this.drawCooldown()
@@ -94,13 +96,11 @@ Superpower.prototype.drawCooldown = function (){
     var that=this
     var i=setInterval(function(){
        if(that.cooldown>9){
-        that.counter.style.display="block"
            that.counter.innerText="00:"+that.cooldown
        }else if(that.cooldown>0){
-        that.counter.style.display="block"
         that.counter.innerText="00:0"+that.cooldown
        }else{
-           that.counter.style.display="none"
+           that.counter.innerText=""
            clearInterval(i)
        }
 

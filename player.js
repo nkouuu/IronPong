@@ -1,12 +1,12 @@
 function Player(game, ia) {
   this.game = game;
-  this.w = 20;
+  this.w = 10;
   this.h = 80;
   this.x = 0;
   this.y = this.game.canvas.height / 2 - this.h / 2 + this.w / 2;
   this.vy0 = this.game.canvas.height / this.game.fps;
   this.vy = 0;
-  this.color = "black";
+  this.color = "rgb(10, 65, 247)";
   this.counterUp = 0;
   this.counterDown = 0;
   this.points = 0;
@@ -40,6 +40,8 @@ Player.prototype.move = function() {
 };
 
 Player.prototype.draw = function() {
+  this.game.ctx.shadowBlur = 40;
+  this.game.ctx.shadowColor = this.color;
   this.game.ctx.fillStyle = this.color;
   this.game.ctx.beginPath();
   this.game.ctx.moveTo(this.x + this.w / 2, this.y);

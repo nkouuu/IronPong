@@ -6,7 +6,7 @@ function Ball(game) {
   this.vy0 = this.game.canvas.height / (this.game.fps * 1.5);
   this.vx = -this.vx0 / 2;
   this.vy = -this.vy0;
-  this.color = "black";
+  this.color = "white";
   this.radius = 10;
 }
 
@@ -14,11 +14,6 @@ Ball.prototype.reset = function(p) {
   this.x = this.game.canvas.width / 2;
   this.y = this.game.canvas.height / 2;
   var act = p;
-  /*while(act!=0) {
-      var act2 = new Date()
-      if(act2 - act >3000) act = 0
-  }*/
-  //this.game.newPoint()
  setTimeout(function(){
       this.game.newPoint()
 
@@ -68,7 +63,7 @@ Ball.prototype.checkColision = function() {
 
 Ball.prototype.checkColisionPlayer = function(player) {
   var action = 0;
-  if (this.x - this.radius < player.x + player.w && player.x < 10) {    // si shoca con el primer player en x
+  if (this.x - this.radius < player.x + player.w && player.x < 100) {    // si shoca con el primer player en x
     if (//si choca en y
       this.y + this.radius >= player.y - player.w / 2 &&
       this.y - this.radius <= player.y + player.h - player.w / 2
@@ -76,7 +71,7 @@ Ball.prototype.checkColisionPlayer = function(player) {
       this.x = player.x + player.w + this.radius + 1;
       action = 1;
     } else return;
-  } else if (this.x + this.radius > player.x && player.x > 50) {    //si choca con player2 en x
+  } else if (this.x + this.radius > player.x && player.x > 100) {    //si choca con player2 en x
     if (//si choca en y
       this.y + this.radius >= player.y - player.w / 2 &&
       this.y - this.radius <= player.y + player.h - player.w / 2
@@ -111,7 +106,7 @@ Ball.prototype.checkColisionPlayer = function(player) {
         this.vy = -this.vy0 / 2;
       }
     }
-    this.color="black"
+    this.color="white"
     return true
   }
 };
@@ -139,6 +134,7 @@ Ball.prototype.move = function() {
 
 Ball.prototype.draw = function() {
   this.game.ctx.beginPath();
+  this.game.ctx.shadowColor = this.color;
   this.game.ctx.fillStyle = this.color;
   this.game.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
   this.game.ctx.fill();

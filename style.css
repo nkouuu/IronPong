@@ -1,11 +1,15 @@
 body{
     padding: 50px 0;
     background:grey;
+    text-align: center;
 }
 
 #main{
     width: 100%;
     text-align: center
+}
+#main > *{
+    margin-bottom: 10px
 }
  #modes button {
     display: inline-block;
@@ -16,19 +20,39 @@ body{
     font-size: 20px;
     border-radius: 50px
 }
-#levels button {
+ .btn-black {
     display: inline-block;
     background: black;
     color:white;
-    width: 20%;
+    width: 17%;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 50px
+}
+#cancel {
+    background: rgb(240, 60, 60);
+    color:white;
+    width: 10%;
     height: 40px;
     font-size: 20px;
     border-radius: 50px
 }
 
+#restart,#home{
+    width: 10%;
+    height: 30px;
+    margin-top: 10px;
+    display: inline-block
+
+}
+#buttons{
+    width:100%;
+    display: none
+}
+
 #main img{
     border:1px  solid red;
-    max-height:  200px;
+    max-height:  250px;
     min-width: 800px;
     border-radius: 40px;
 }
@@ -55,22 +79,85 @@ body{
      margin:0
  }
  #canvas{
-     border:2px solid rgb(240, 60, 60)
+     border:2px solid rgb(16, 62, 216);
+     color:rgb(10, 65, 247)
  }
 
- #powers h4,#powers2 h4{
-    border-bottom:1px solid rgb(240, 60, 60)
+ #powers img,#powers2 img{
+    border:1px solid black
      
  }
  .counter{
-     min-height: 30px;
+     min-height: 20px;
+     color:white
  }
 
  #powers,#powers2 {
-     display:flex;
-     flex-direction: column;
-     align-content: space-between;
-     height: 300px;
+     
+     min-height: 300px;
      min-width: 80px;
      
  }
+
+ 
+ #score{
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.781);
+    border:2px solid blue;
+    display: none;
+    top:30%;
+    left:37%
+  }
+  #score > *{
+    display: inline-block;
+  }
+  #text{
+    width: 100%;
+    color:black;
+    font-size: 20px;
+  
+  }
+  #score button{
+    width: 45%;
+    
+    
+  }
+  #reload,#input-aceptar{
+    background: green;
+    border-radius: 50px;
+    height: 30px;
+  }
+  #input-aceptar{
+      width: 50%;
+  }
+  #exit{
+    background: red;
+    border-radius: 50px;
+    height: 30px;
+
+  }
+
+  #names{
+      width: 100%;
+      display:none;
+      justify-content: space-around;
+      margin-bottom: 10px;
+      font-size: 30px;
+      color:white
+  }
+  #input{
+      width:20%;
+      position: absolute;
+      display:none;
+      padding: 5px;
+      background: rgba(255, 255, 255, 0.918);
+      top:30%;
+    left:40%;
+    border-radius: 50px;
+  }
+  #input > *{
+      
+      margin:5px;
+  }

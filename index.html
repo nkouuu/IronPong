@@ -12,6 +12,8 @@
     <script type="text/javascript" src="player.js"></script>
     <script type="text/javascript" src="superpower.js"></script>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
     <title>IronPong</title>
 
 </head>
@@ -24,17 +26,36 @@
 
         </div>
         <div id="modes">
-            <button id="btn-1vs1"> 1 vs 1</button>
+            <button class="btn-black" id="btn-1vs1"> 1 vs 1</button>
             <button id="btn-1vsIA"> 1 vs IA</button>
         </div>
         <div id="levels">
-            <button id="btn-1vsIAEasy"> Easy</button>
-            <button id="btn-1vsIANormal"> Normal</button>
-            <button id="btn-1vsIAHard"> Hard</button>
+            <button id="cancel"> Cancel</button>
+            <button class="btn-black" id="btn-1vsIAEasy"> Easy</button>
+            <button class="btn-black" id="btn-1vsIANormal"> Medium</button>
+            <button class="btn-black" id="btn-1vsIAHard"> Hard</button>
         </div>
     </div>
 
+
+    <div id="names">
+            <span id="player">player</span>
+            <span id="player2"> player2</span>
+    </div>
+
+    <div id="input">
+        <div >
+            Player1: <input type="text" id="input1">
+        </div>
+        <div id="divInputPlayer2">
+                Player2: <input type="text" id="input2">
+        </div>
+        <button id="input-aceptar">
+            Play!
+        </button>
+    </div>
     <div id="board">
+        
         <div id="powers">
             <div id="powerQ">
                 <div class="info">
@@ -43,7 +64,7 @@
                     <h4>Boost</h4>
                 </div>
                 <div class="counter">
-                    
+
                 </div>
             </div>
 
@@ -56,7 +77,7 @@
                     <h4>Shadow</h4>
                 </div>
                 <div class="counter">
-                    
+
                 </div>
             </div>
 
@@ -67,7 +88,7 @@
                     <h4>SuperBoost</h4>
                 </div>
                 <div class="counter">
-                    
+
                 </div>
 
             </div>
@@ -87,7 +108,7 @@
                     <h4>Boost</h4>
                 </div>
                 <div class="counter">
-                    
+
                 </div>
             </div>
 
@@ -99,7 +120,7 @@
 
                     <h4>Shadow</h4>
                 </div>
-                  <div class="counter">
+                <div class="counter">
                 </div>
             </div>
 
@@ -110,7 +131,7 @@
                     <h4>SuperBoost</h4>
                 </div>
                 <div class="counter">
-                    
+
                 </div>
 
             </div>
@@ -119,6 +140,23 @@
         </div>
 
     </div>
+    <div id="score">
+        <p id="text"></p>
+        <button id="reload">
+            Play Again!
+        </button>
+        <button id="exit">
+            Quit
+        </button>
+    </div>
+    <div id="buttons">
+        <button class="btn-black" id="home">
+            <i class="fas fa-home"></i>
+        </button>
+        
+    </div>
+
+
 
 </body>
 
