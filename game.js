@@ -3,7 +3,7 @@ var game;
 function Game() {
   this.canvas = document.getElementById("canvas");
   this.ctx = this.canvas.getContext("2d");
-  this.score = document.getElementById("score")
+  this.score = document.getElementById("score");
   this.fps = 60;
   this.player = new Player(this);
   this.player.x = 20;
@@ -12,8 +12,7 @@ function Game() {
   this.player2.x = this.canvas.width - this.player2.w - 20;
   this.ball = new Ball(this);
   this.ball2 = "";
-  this.background = new Image();
-  this.background.src = "./images/background.jpg";
+
   this.asignPowers();
   this.basic = new Audio("./sounds/basic.wav");
   this.point = new Audio("./sounds/point.wav");
@@ -60,10 +59,9 @@ Game.prototype.asignPowers = function() {
 
 Game.prototype.start = function() {
   game = this;
-  this.background.onload = function() {
-    game.id = window.requestAnimationFrame(update);
-    game.newPoint();
-  };
+
+  game.id = window.requestAnimationFrame(update);
+  game.newPoint();
 };
 
 Game.prototype.checkColisions = function() {
@@ -77,13 +75,7 @@ Game.prototype.checkColisions = function() {
 
 Game.prototype.drawBackground = function() {
   this.ctx.beginPath();
-  this.ctx.drawImage(
-    this.background,
-    0,
-    0,
-    this.canvas.width,
-    this.canvas.height
-  );
+
   this.ctx.strokeStyle = "rgb(16, 62, 216)";
   this.ctx.moveTo(this.canvas.width / 2, 0);
   this.ctx.setLineDash([5, 3]);
@@ -110,8 +102,9 @@ Game.prototype.drawPoints = function() {
   this.ctx.shadowColor = "white";
   this.ctx.fillStyle = "white";
   this.ctx.font = "20px Arial";
-  this.ctx.fillText(this.player.points, this.canvas.width / 4, 30);
-  this.ctx.fillText(this.player2.points, (this.canvas.width / 4) * 3, 30);
+  document.getElementById("player").innerText= this.player.name+":  "+this.player.points
+  document.getElementById("player2").innerText= this.player2.name+":  "+this.player2.points
+  
 };
 
 Game.prototype.moveAll = function() {
@@ -122,30 +115,32 @@ Game.prototype.moveAll = function() {
 };
 
 Game.prototype.gameOver = function(player) {
-    var p
-    if(player==1){
-        p=this.player
-    }else{
-        p=this.player2
-    }
-    this.score.style.display = "inline-block"
-    document.getElementById("board").style.position ="relative"
-    document.getElementById("buttons").style.position ="relative"
-    document.getElementById("text").innerText = p.name+" wins!!";
+  var p;
+  if (player == 1) {
+    p = this.player;
+  } else {
+    p = this.player2;
+  }
+  this.score.style.display = "inline-block";
+  document.getElementById("board").style.position = "relative";
+  document.getElementById("buttons").style.position = "relative";
+  document.getElementById("text").innerText = p.name + " wins!!";
 };
 
 Game.prototype.newPoint = function() {
+    this.clear()
   window.cancelAnimationFrame(game.id);
   this.ball.color = "white";
   this.player.reset(1);
   this.player2.reset(2);
+  
   this.drawAll();
   if (this.player.points == 11) {
     this.gameOver(1);
-    return
+    return;
   } else if (this.player2.points == 11) {
     this.gameOver(2);
-    return
+    return;
   }
   setTimeout(function() {
     if (game.player.points == 0 && game.player2.points == 0) {
@@ -159,12 +154,11 @@ Game.prototype.newPoint = function() {
   }, 1500);
 };
 
-
-Game.prototype.restart = function(){
-    this.player.points = 0
-    this.player2.points = 0
-    this.newPoint()
-}
+Game.prototype.restart = function() {
+  this.player.points = 0;
+  this.player2.points = 0;
+  this.newPoint();
+};
 
 var lastTime = 0;
 var delta = 0;

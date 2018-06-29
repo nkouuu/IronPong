@@ -16,17 +16,22 @@ function Player(game, ia) {
 
 Player.prototype.move = function() {
   if (this.ia) {
-    if (this.game.ball.vx > 0) {
-      if (this.game.ball.y < this.y) {
+    var ball = this.game.ball;
+    if (this.game.ball2 != "") {
+      var r = Math.random() * 2;
+      if (r > 1) ball = this.game.ball2;
+    }
+    if (ball.vx > 0) {
+      if (ball.y < this.y) {
         this.vy = -this.vy0;
         this.checkColisionUp();
-      } else if (this.game.ball.y > this.y + this.h - this.w / 2) {
+      } else if (ball.y > this.y + this.h - this.w / 2) {
         this.vy = this.vy0;
         this.checkColisionDown();
       } else {
         if (
-          this.game.ball.y < this.y + this.h / 2 ||
-          this.game.ball.y > this.y + this.h / 4
+          ball.y < this.y + this.h / 2 ||
+          ball.y > this.y + this.h / 4
         )
           this.vy = 0;
       }

@@ -11,50 +11,49 @@ function Ball(game) {
 }
 
 Ball.prototype.reset = function(p) {
+  this.game.ball2 = "";
   this.x = this.game.canvas.width / 2;
   this.y = this.game.canvas.height / 2;
   var act = p;
- setTimeout(function(){
-      this.game.newPoint()
-
- },2)
-    if (act == 2) {
-      this.vx = this.vx0 / 2;
-      this.vy = this.vy0;
-    } else if (act == 1) {
-      this.vx = -this.vx0 / 2;
-      this.vy = -this.vy0;
-    }
-  
+  setTimeout(function() {
+    this.game.newPoint();
+  }, 2);
+  if (act == 2) {
+    this.vx = this.vx0 / 2;
+    this.vy = this.vy0;
+  } else if (act == 1) {
+    this.vx = -this.vx0 / 2;
+    this.vy = -this.vy0;
+  }
 };
 
 Ball.prototype.checkColision = function() {
   //si se puntua
-  if (this.x  -this.radius*2  > this.game.canvas.width) {
+  if (this.x - this.radius * 2 > this.game.canvas.width) {
     this.game.player.points++;
     this.reset(2);
-    this.game.point.play()
-    return true
+    this.game.point.play();
+    return true;
   }
-  if (this.x + this.radius*2 < 0) {
+  if (this.x + this.radius * 2 < 0) {
     this.game.player2.points++;
     this.reset(1);
-    this.game.point.play()
-    return true
+    this.game.point.play();
+    return true;
   }
   //si choca en techo o suelo
   if (this.y - this.radius < 0) {
     this.y = 1 + this.radius; // lo adelanto un poco para que no se solapen varias condiciones
     this.vy = -this.vy;
-    this.game.basic.play()
-    return true
+    this.game.basic.play();
+    return true;
   }
 
   if (this.y + this.radius > this.game.canvas.height) {
     this.y = this.game.canvas.height - this.radius - 1;
     this.vy = -this.vy;
-    this.game.basic.play()
-    return true
+    this.game.basic.play();
+    return true;
   }
 
   this.checkColisionPlayer(this.game.player);
@@ -64,7 +63,7 @@ Ball.prototype.checkColision = function() {
 Ball.prototype.checkColisionPlayer = function(player) {
   var action = 0;
   if (this.x - this.radius < player.x + player.w && player.x < 100) {    // si shoca con el primer player en x
-    if (//si choca en y
+    if (      //si choca en y
       this.y + this.radius >= player.y - player.w / 2 &&
       this.y - this.radius <= player.y + player.h - player.w / 2
     ) {
@@ -72,7 +71,7 @@ Ball.prototype.checkColisionPlayer = function(player) {
       action = 1;
     } else return;
   } else if (this.x + this.radius > player.x && player.x > 100) {    //si choca con player2 en x
-    if (//si choca en y
+    if (      //si choca en y
       this.y + this.radius >= player.y - player.w / 2 &&
       this.y - this.radius <= player.y + player.h - player.w / 2
     ) {
@@ -80,14 +79,14 @@ Ball.prototype.checkColisionPlayer = function(player) {
       action = 1;
     } else return;
   }
-  if (action) {//si hay colision
-    if (this.vx < 0) this.vx = this.vx0;//cambiamos sentido y reseteamos la velocidad
-    else this.vx = -this.vx0;   
+  if (action) {    //si hay colision
+    if (this.vx < 0) this.vx = this.vx0;    //cambiamos sentido y reseteamos la velocidad
+    else this.vx = -this.vx0;
     if (this.vy < 0) this.vy = this.vy0;
     else this.vy = -this.vy0;
 
     if (this.checkPowers(player)) return;
-    this.game.basic.play()
+    this.game.basic.play();
     if (player.counterUp > 0) {      //si el player va hacia arriba
       this.vy = -this.vy0 * player.counterUp;
       this.vx = this.vx * 2;
@@ -106,8 +105,8 @@ Ball.prototype.checkColisionPlayer = function(player) {
         this.vy = -this.vy0 / 2;
       }
     }
-    this.color="white"
-    return true
+    this.color = "white";
+    return true;
   }
 };
 
@@ -141,10 +140,4 @@ Ball.prototype.draw = function() {
   this.game.ctx.closePath();
 };
 
-/*Ball.prototype.faster = function() {
-  this.vx *= 1.1;
-};
 
-Ball.prototype.slower = function() {
-  this.vx /= 1.1;
-};*/

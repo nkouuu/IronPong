@@ -25,7 +25,7 @@ window.onload = function() {
     startIA(1);
   };
   document.getElementById("btn-1vsIANormal").onclick = function() {
-    startIA(2);
+    startIA(1.8);
   };
   document.getElementById("btn-1vsIAHard").onclick = function() {
     startIA(4);

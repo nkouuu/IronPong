@@ -1,7 +1,7 @@
 body{
     padding: 50px 0;
-    background:grey;
-    text-align: center;
+    background-image: url("./images/background.jpg")   ;
+ text-align: center;
 }
 
 #main{
@@ -10,6 +10,9 @@ body{
 }
 #main > *{
     margin-bottom: 10px
+}
+#main img{
+    
 }
  #modes button {
     display: inline-block;
@@ -51,7 +54,7 @@ body{
 }
 
 #main img{
-    border:1px  solid red;
+    border:1px  solid black;
     max-height:  250px;
     min-width: 800px;
     border-radius: 40px;
@@ -79,8 +82,8 @@ body{
      margin:0
  }
  #canvas{
-     border:2px solid rgb(16, 62, 216);
-     color:rgb(10, 65, 247)
+     border:3px solid rgb(16, 62, 216);
+     color:rgb(10, 65, 247);
  }
 
  #powers img,#powers2 img{
@@ -93,7 +96,7 @@ body{
  }
 
  #powers,#powers2 {
-     
+     color:white;
      min-height: 300px;
      min-width: 80px;
      
