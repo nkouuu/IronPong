@@ -46,7 +46,7 @@ window.onload = function() {
       document.getElementById("buttons").style.display = "inline-block"
     };
   }
-  document.getElementById("btn-1vs1").onclick = function() {
+  /*document.getElementById("btn-1vs1").onclick = function() {
     document.getElementById("input").style.display = "inline-block";
     document.getElementById("input-aceptar").onclick = function() {
       game = new Game();
@@ -68,7 +68,7 @@ window.onload = function() {
       document.getElementById("input").style.display = "none";
 
     };
-  };
+  };*/
 
   function startGame() {
     document.getElementById("names").style.display = "flex";
